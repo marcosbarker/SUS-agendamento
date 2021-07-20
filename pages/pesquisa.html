@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <!--Customização CSS-->
+  <link rel="stylesheet" href="../styles/global.css">   
+  <link rel="stylesheet" href="../styles/consulta.css">
+  <title>Consulta Agendamentos</title>
+</head>
+  <body onload="carregaListaAgendamento()">
+    <nav class="navbar navbar-expand-lg navbar-dark color_back mb-5">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">
+           <img src="../assets/logo_sus.png" width="100" alt="logo_sus">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="agendamento.html">Cadastro</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="pesquisa.html">Agendamentos</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col">
+          <h1 class="display-4">Consulta Agendamentos</h1>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row mt-3">
+          <div class="col-md-4">
+            <label>Médico(a)</label>              
+            <select class="form-control" id="doutor">
+              <option value="">Selecione o Médico(a)</option>
+              <option value="1">Dr.  Emerson Emerson de Souza</option>
+              <option value="2">Dr.  João Victor Rodrigues</option>
+              <option value="3">Drª. Jéssica Coutinho de Mattos</option>
+              <option value="4">Drª. Ana Carolina M Corrêa</option>
+              <option value="5">Drª. Larissa Marques</option>
+            </select> 
+          </div>
+          <div class="col-md-4">
+            <label>Data de agendamento</label>
+            <input type="date" class="form-control" id="data">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row mt-3">
+          <div class="col-md-4">
+            <label>Unidade Básica de Saúde</label>              
+            <select class="form-control" id="ubs">
+              <option value="">Selecione a Unidade</option>
+              <option value="1">UBS Alto Independência</option>
+              <option value="2">UBS Morin</option>
+              <option value="3">UBS Mosela</option>
+              <option value="4">UBS Quitandinha</option>
+            </select>              
+          </div>
+          <div class="col-md-4">
+            <label>Especialidades</label>
+            <select class="form-control" id="especialidades">
+              <option value="">Selecione a Especialidade</option>
+              <option value="1">Atendimento Clínico</option>
+              <option value="2">Atendimento pediátrico</option>
+              <option value="3">Saúde Bucal</option>                
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="container">          
+        <div class="row mt-3"> 
+          <div class="col-md-5">
+            <label>Nome Completo</label>
+            <input type="text" class="form-control" id="name"/>
+          </div>
+          <div class="col-md-3">
+            <label>Nº Cartão Nacional de Saúde</label>
+            <input type="text" class="form-control" id="carteira"/>
+          </div> 
+          <div class="col-md-4">
+            <label>Sexo</label>
+            <select class="form-control" id="sexo">                
+              <option value="">Escolha o Sexo</option>
+              <option value="1">Feminino</option> 
+              <option value="2">Masculino</option> 
+              <option value="3">Prefiro não informar</option>            
+            </select>
+          </div>
+        </div>         
+      </div>  
+      <div class="container">
+        <div class="row justify-content-end mt-4 mb-4">
+          <div class="col-md-3">
+            <button type="button" class="btn btn-primary" onclick="pesquisarAgendamento()">
+              Pesquisar
+            </button>
+          </div>
+        </div>
+      </div>         
+      <div class="row">
+        <div class="col">
+          <table class="table table-info table-striped table-hover" >
+            <thead >
+              <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Nº CNS</th>
+                <th>Endereço</th>
+                <th>Sexo</th>
+                <th>Nascimento</th>
+                <th>Telefone</th>
+                <th>Unidade</th>
+                <th>Especialidade</th>
+                <th>Doutor(a)</th>
+                <th>Data</th>                
+              </tr>                         
+            </thead>
+            <tbody id="listaAgendamento">               
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalExclusaoAgendamento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div id="modal_titulo_div">
+            <h5 class="modal-title" id="modal_titulo"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="modal_conteudo"></div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" id="modal_btn" onclick="location.reload()" ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- Footer -->
+  <footer class="page-footer font-small mdb-color lighten-3 pt-4">
+  <p>
+    UBS's em Petrópolis
+  </p>
+    <!-- Footer Elements -->
+    <div class="container">
+
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-lg-2 col-md-12 mb-4">
+
+          <!--Image Alto Independencia-->
+          <div class="view overlay z-depth-1-half">
+            <img src="../assets/cards/altoInd-card.png" class="img-fluid"
+              alt="">
+            <a href="https://smspetropolis.net.br/ubs.html#!">
+              <div class="mask rgba-white-light"></div>
+            </a>
+          </div>
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-2 col-md-6 mb-4">
+
+          <!--Image Morin-->
+          <div class="view overlay z-depth-1-half">
+            <img src="../assets/cards/morin-card.png" class="img-fluid"
+              alt="">
+            <a href="https://smspetropolis.net.br/ubs.html#!">
+              <div class="mask rgba-white-light"></div>
+            </a>
+          </div>
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-2 col-md-6 mb-4">
+
+          <!--Image Mosela-->
+          <div class="view overlay z-depth-1-half">
+            <img src="../assets/cards/mosela-card.png" class="img-fluid"
+              alt="">
+            <a href="https://smspetropolis.net.br/ubs.html#!">
+              <div class="mask rgba-white-light"></div>
+            </a>
+          </div>
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-2 col-md-12 mb-4">
+
+          <!--Image Rodoviaria Bingen-->
+          <div class="view overlay z-depth-1-half">
+            <img src="../assets/cards/quitandinha-card.png" class="img-fluid"
+              alt="">
+            <a href="https://smspetropolis.net.br/ubs.html#!">
+              <div class="mask rgba-white-light"></div>
+            </a>
+          </div>
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-2 col-md-6 mb-4">
+
+          <!--Image retiro-->
+          <div class="view overlay z-depth-1-half">
+            <img src="../assets/cards/retiro-card.png" class="img-fluid"
+              alt="">
+            <a href="https://smspetropolis.net.br/ubs.html#!">
+              <div class="mask rgba-white-light"></div>
+            </a>
+          </div>
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-2 col-md-6 mb-4">
+
+          <!--Image itamarati-->
+          <div class="view overlay z-depth-1-half">
+            <img src="../assets/cards/itamarati-card.png" class="img-fluid"
+              alt="">
+            <a href="https://smspetropolis.net.br/ubs.html#!">
+              <div class="mask rgba-white-light"></div>
+            </a>
+          </div>
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+    <!-- Footer Elements -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2021 Copyright:
+      <a href="https://smspetropolis.net.br/ubs.html#!" target="_blank">Sistema Único de Saúde</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+</body>
+<!--Bootstrap Scripst-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+<!--Font Awesome modal-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+<!--funcao bd-->
+<script src="../app.js"></script>
+</html>
