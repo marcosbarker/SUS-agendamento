@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&family=Rubik:wght@500;600;700&display=swap');
+
+*{
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+}
+
+/*titulos das paginas*/
+.display-4 {
+  font-weight: 500;
+}
+
+/*cor nav bar*/
+.color_back {
+ background: #ffffff;
+ background: -webkit-linear-gradient(left, #f7f2f2, #2148c8);
+} 
+
+#navbarSupportedContent a{
+  color:black ;
+  font-size: 18px;
+  font-family: 'Rubik', sans-serif;
+}
+
+#navbarSupportedContent a:hover{
+  text-decoration: none;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  color:  #2148c8; 
+}
+
+a:focus {
+	outline: none !important;
+}
+
+/*botoes*/
+.btn-primary {
+	outline: none !important;
+	background: #2148c8 !important;
+  border-color: #2148c8;
+}
+
+.btn-primary:hover {
+	cursor: pointer;
+  background: #ffffff !important;
+  color: #2148c8 !important;
+  border-color: #2148c8 !important;
+  transition: 1s;
+}
+
+/*footer*/
+.page-footer p{
+  text-align: center;
+  font-size: 25px;
+  background: #2148c8;
+  color: white;
+  padding: 10px;
+}
+
+footer{
+   background: -webkit-linear-gradient(right, #f7f2f2, #2148c8);
+   margin-top: 20px;
+}
