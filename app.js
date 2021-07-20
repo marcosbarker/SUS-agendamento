@@ -1,4 +1,4 @@
-class Agendar { //2º passo  objeto Agendar 
+class Agendar {  
 
     constructor(name, cpf, carteira, endereco, sexo, nascimento, tel, ubs, especialidades, doutor, data,){
         this.name = name
@@ -14,8 +14,8 @@ class Agendar { //2º passo  objeto Agendar
         this.data = data          
     }
 
-    validarDados(){ // 7º passo      validar os dados na app
-        for(let i in this){ //recuperando os atributos 
+    validarDados(){ 
+        for(let i in this){ 
             if (this[i] == undefined || this[i] == '' || this[i] == null){
                 return false
             }           
@@ -23,73 +23,48 @@ class Agendar { //2º passo  objeto Agendar
         return true
     }    
 }
-
-class Bd { //3º passo criando banco de dados
-
-    constructor(){ //6º passo       verificar se o id existe
-
-        let id = localStorage.getItem('id') //recuperando o id do getProximoId e testando
-
+// CRIA BD
+class Bd { 
+    //cria id
+    constructor(){ 
+        let id = localStorage.getItem('id') 
         if (id === null){
-            localStorage.setItem('id', 0) //colocando um numero no para iniciar id
+            localStorage.setItem('id', 0) 
         }
     }
 
-    getProximoId(){ //5º passo     criando indice para os objetos no localStorage
+    //gera id para itens no localStorage
+    getProximoId(){ 
         let proximoId = localStorage.getItem('id')
-        //getItem - recupera um dado em localStorage
-        //setItem - inserir um dado em localStorage
-
-        return parseInt(proximoId) + 1 //acresacentando mais 1 no Id
-
-
+            return parseInt(proximoId) + 1
     }
 
-    gravar(a) { //4º passo       gravando e convertendo o objeto em string
-
-        let id = this.getProximoId() //recuperando o metodo getProximoId
-     
+    gravar(a) {
+        let id = this.getProximoId() 
+        //converte objeto para string
         localStorage.setItem(id, JSON.stringify(a)) 
-        //gravando o objeto literal no localStorage
-        //JSON.stringify serve para converter Objetos para string / JSON.parser faz o oposto, converte string em objetos
-        
         localStorage.setItem('id', id)
     }
 
-    recuperarTodosRegistros() { // 10 passo
-
+    recuperarTodosRegistros() { 
         let agendamento = Array()
-
+        //faz requisição do agendamento
         let id = localStorage.getItem('id')
-
-
-        //recuperar todas os agendamento cadastrada em locaStorage
         for(let i = 1; i <= id; i++){
-
-
-            //recuperar o agendamento
             let agenda = JSON.parse(localStorage.getItem(i))
-
-
-            //posibilidade de ver indices que foram pulados ou excluidos com o valor null
             if(agenda == null){
                 continue
             }
-
-            agenda.id = i //atributo do id que consta para identificar o id do botão de exclusão
-
+            agenda.id = i 
             agendamento.push(agenda)
         }
         return agendamento    
     }
 
-    pesquisar(encontrar){  //13º passo
-       
-
+    //filtro
+    pesquisar(encontrar){  
         let agendamentoFiltrado = Array()
-
         agendamentoFiltrado = this.recuperarTodosRegistros()
-
 
         if (encontrar.name != ''){
             agendamentoFiltrado = agendamentoFiltrado.filter(a => a.name == encontrar.name)
@@ -138,18 +113,17 @@ class Bd { //3º passo criando banco de dados
         return agendamentoFiltrado
     }
 
+    //modal exlui agendamento
     remover(id){
         localStorage.removeItem(id)
     }
-
-    
 }
 
 let bd = new Bd()
 
 function cadastrarAgendamento(){  //1º passo
    
-    let name = document.getElementById('name')  //recuperando dados no input
+    let name = document.getElementById('name')  
     let cpf = document.getElementById('cpf')
     let carteira = document.getElementById('carteira')
     let endereco = document.getElementById('endereco')
@@ -161,7 +135,7 @@ function cadastrarAgendamento(){  //1º passo
     let doutor = document.getElementById('doutor')
     let data = document.getElementById('data')    
 
-    let agendar = new Agendar(  //instânciando o objeto Agendar
+    let agendar = new Agendar( 
         name.value,
         cpf.value,
         carteira.value, 
@@ -176,7 +150,7 @@ function cadastrarAgendamento(){  //1º passo
     )
 
     
-    if (agendar.validarDados()){ // 8º passo     Dialog sobre o preenchimento do formulário
+    if (agendar.validarDados()){ 
         bd.gravar(agendar)
 
         document.getElementById('modal_titulo_div').className = 'modal-header text-success'
@@ -188,10 +162,8 @@ function cadastrarAgendamento(){  //1º passo
         document.getElementById('modal_btn').innerHTML = 'Voltar'
         document.getElementById('modal_btn').className = 'btn btn-success'
 
-
         $('#modalRegistraAgendamento').modal('show')
 
-        //zera informações da tela
         name.value = ''
         cpf.value = ''
         carteira.value = '' 
@@ -220,24 +192,19 @@ function cadastrarAgendamento(){  //1º passo
     }
 }
 
-function carregaListaAgendamento( pesquisar = Array(), filtro = false ){  // 9º passo  objetivo dessa função é ser chamada sempre que 
-
+function carregaListaAgendamento( pesquisar = Array(), filtro = false ){   
       
     if (pesquisar.length == 0 && filtro == false){
         pesquisar = bd.recuperarTodosRegistros()
     }
 
-    //selecionando o elemento tbody da tabela
-    let listaAgendamento = document.getElementById('listaAgendamento') // 11º passo   criando lista para pesquisa
+    let listaAgendamento = document.getElementById('listaAgendamento') 
     listaAgendamento.innerHTML = ''
-
-    //vamos percorrer o array agendamento, listando cada agentamento de forma dinanmica    
+    
+    //CRIA ESTRUTURA DO BD linhas e colunas
     pesquisar.forEach(function(a){
-       
-        //criando linha (tr)
         let linha = listaAgendamento.insertRow()
 
-        //criar as colunas(td)
         linha.insertCell(0).innerHTML = a.name
         linha.insertCell(1).innerHTML = a.cpf
         linha.insertCell(2).innerHTML = a.carteira
@@ -251,8 +218,8 @@ function carregaListaAgendamento( pesquisar = Array(), filtro = false ){  // 9º
             case '3': a.sexo = 'Prefiro não informar'
                 break 
         }
-        linha.insertCell(4).innerHTML = a.sexo
 
+        linha.insertCell(4).innerHTML = a.sexo
         let nasc_1  = new Date(a.nascimento).toLocaleDateString('pt-br')
         linha.insertCell(5).innerHTML = nasc_1
         linha.insertCell(6).innerHTML = a.tel
@@ -293,44 +260,33 @@ function carregaListaAgendamento( pesquisar = Array(), filtro = false ){  // 9º
         }
  
         linha.insertCell(9).innerHTML = a.doutor
-
         let data_a  = new Date(a.data).toLocaleDateString('pt-br')
         linha.insertCell(10).innerHTML = data_a
 
-        //criar o botão de exclisão
+        //botao de exluir modal
         let btn = document.createElement('button')
         btn.className = 'btn btn-danger'
         btn.innerHTML = '<i class="fa fa-trash"></i>'
         btn.id = `id_despesa_${a.id}`
         btn.onclick = function (){ 
             let id = this.id.replace('id_despesa_', '')                   
-            
             document.getElementById('modal_titulo_div').className = 'modal-header text-danger'
-
             document.getElementById('modal_titulo').innerHTML = 'Exclusão de agendamento!'
-
             document.getElementById('modal_conteudo').innerHTML = 'Deseja excluir esse agendamento de forma permanente?'
-
             document.getElementById('modal_btn').innerHTML = 'Excluir'           
-            
-
             document.getElementById('modal_btn').className = 'btn btn-danger' 
 
             $('#modalExclusaoAgendamento').modal('show')            
-            
-                     
+                           
             bd.remover(id)        
-            
         }     
         
         linha.insertCell(11).append(btn) 
-            
     })    
 }
 
-function pesquisarAgendamento(){ // 12º passo     botão para pesquisar
-
-   
+//pesuisa modal
+function pesquisarAgendamento(){ r
     let name = document.getElementById('name') 
     let cpf = document.getElementById('cpf')
     let carteira = document.getElementById('carteira')
@@ -359,5 +315,5 @@ function pesquisarAgendamento(){ // 12º passo     botão para pesquisar
 
     let pesquisar = bd.pesquisar(pesquisa)    
     
-    this.carregaListaAgendamento(pesquisar, true) // 14º passo*/
+    this.carregaListaAgendamento(pesquisar, true) 
 }
