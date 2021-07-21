@@ -284,36 +284,3 @@ function carregaListaAgendamento( pesquisar = Array(), filtro = false ){
         linha.insertCell(11).append(btn) 
     })    
 }
-
-//pesuisa modal
-function pesquisarAgendamento(){ r
-    let name = document.getElementById('name') 
-    let cpf = document.getElementById('cpf')
-    let carteira = document.getElementById('carteira')
-    let endereco = document.getElementById('endereco')
-    let sexo = document.getElementById('sexo')
-    let nascimento = document.getElementById('nascimento')
-    let tel = document.getElementById('tel')
-    let plano = document.getElementById('ubs')
-    let especialidades = document.getElementById('especialidades')
-    let doutor = document.getElementById('doutor')
-    let data = document.getElementById('data') 
-
-    let pesquisa = new Agendar(
-        name.value,
-        cpf.value,
-        carteira.value, 
-        endereco.value, 
-        sexo.value, 
-        nascimento.value, 
-        tel.value, 
-        ubs.value, 
-        especialidades.value, 
-        doutor.value, 
-        data.value
-        )
-
-    let pesquisar = bd.pesquisar(pesquisa)    
-    
-    this.carregaListaAgendamento(pesquisar, true) 
-}
