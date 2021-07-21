@@ -60,7 +60,6 @@ class Bd {
         }
         return agendamento    
     }
-
     //modal exlui agendamento
     remover(id){
         localStorage.removeItem(id)
