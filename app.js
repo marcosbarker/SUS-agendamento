@@ -61,58 +61,6 @@ class Bd {
         return agendamento    
     }
 
-    //filtro
-    pesquisar(encontrar){  
-        let agendamentoFiltrado = Array()
-        agendamentoFiltrado = this.recuperarTodosRegistros()
-
-        if (encontrar.name != ''){
-            agendamentoFiltrado = agendamentoFiltrado.filter(a => a.name == encontrar.name)
-        }
-        
-        if (encontrar.cpf != ''){
-            agendamentoFiltrado = agendamentoFiltrado.filter(a => a.cpf == encontrar.cpf)
-        }
-
-        if (encontrar.carteira != ''){
-            agendamentoFiltrado = agendamentoFiltrado.filter(a => a.carteira == encontrar.carteira)
-        }
-
-        if (encontrar.endereco != ''){
-            agendamentoFiltrado = agendamentoFiltrado.filter(a => a.endereco == encontrar.endereco)
-        }
-
-        if (encontrar.sexo != ''){
-            agendamentoFiltrado = agendamentoFiltrado.filter(a => a.sexo == encontrar.sexo)
-        }
-
-        if (encontrar.nascimento != ''){
-            agendamentoFiltrado = agendamentoFiltrado.filter(a => a.nascimento == encontrar.nascimento)
-        }
-
-        if (encontrar.tel != ''){
-            agendamentoFiltrado = agendamentoFiltrado.filter(a => a.tel == encontrar.tel)
-        }
-
-        if (encontrar.ubs != ''){
-            agendamentoFiltrado = agendamentoFiltrado.filter(a => a.ubs == encontrar.ubs)
-        }
-
-        if (encontrar.especialidades != ''){
-            agendamentoFiltrado = agendamentoFiltrado.filter(a => a.especialidades == encontrar.especialidades)
-        }
-
-        if (encontrar.doutor != ''){
-            agendamentoFiltrado = agendamentoFiltrado.filter(a => a.doutor == encontrar.doutor)
-        }
-
-        if (encontrar.data != ''){
-            agendamentoFiltrado = agendamentoFiltrado.filter(a => a.data == encontrar.data)
-        }
-
-        return agendamentoFiltrado
-    }
-
     //modal exlui agendamento
     remover(id){
         localStorage.removeItem(id)
@@ -121,7 +69,7 @@ class Bd {
 
 let bd = new Bd()
 
-function cadastrarAgendamento(){  //1º passo
+function cadastrarAgendamento(){ 
    
     let name = document.getElementById('name')  
     let cpf = document.getElementById('cpf')
