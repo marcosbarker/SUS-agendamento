@@ -247,7 +247,7 @@ function carregaListaAgendamento( pesquisar = Array(), filtro = false ){
         linha.insertCell(8).innerHTML = a.especialidades
 
         switch (a.doutor){
-            case '1': a.doutor = 'Dr.  Emerson Emerson de Souza'
+            case '1': a.doutor = 'Dr.  Emerson de Souza'
                 break
             case '2': a.doutor = 'Dr.  João Victor Rodrigues' 
                 break                
