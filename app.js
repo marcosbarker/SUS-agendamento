@@ -155,11 +155,11 @@ function cadastrarAgendamento(){  //1º passo
 
         document.getElementById('modal_titulo_div').className = 'modal-header text-success'
 
-        document.getElementById('modal_titulo').innerHTML = 'Gravado com Sucesso!'
+        document.getElementById('modal_titulo').innerHTML = 'Cadastrado com Sucesso!'
 
-        document.getElementById('modal_conteudo').innerHTML = 'O paciente foi cadastrado com sucesso.'
+        document.getElementById('modal_conteudo').innerHTML = 'Não esqueça de levar a carteirinha do SUS no dia da consulta'
 
-        document.getElementById('modal_btn').innerHTML = 'Voltar'
+        document.getElementById('modal_btn').innerHTML = 'Confirma'
         document.getElementById('modal_btn').className = 'btn btn-success'
 
         $('#modalRegistraAgendamento').modal('show')
@@ -180,9 +180,9 @@ function cadastrarAgendamento(){  //1º passo
 
         document.getElementById('modal_titulo_div').className = 'modal-header text-danger'
 
-        document.getElementById('modal_titulo').innerHTML = 'Erro na Gravação'
+        document.getElementById('modal_titulo').innerHTML = 'Todos os campos são obrigatórios'
 
-        document.getElementById('modal_conteudo').innerHTML = 'Preencha os dados corretamente.'
+        document.getElementById('modal_conteudo').innerHTML = 'Preencha todos os dados corretamente.'
 
         document.getElementById('modal_btn').innerHTML = 'Voltar'
         document.getElementById('modal_btn').className = 'btn btn-danger'
