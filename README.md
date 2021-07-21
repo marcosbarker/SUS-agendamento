@@ -1,5 +1,5 @@
 <div align="center">
-<i><h6>Projeto para avaliação final como requisito parcial da disciplina Programação em Ambiente Virtual, do curso Tecnologia da Informação e Comunicação-FAETERJ.</h6></i>
+<i><h6>Projeto para avaliação final, requisito parcial da disciplina Programação em Ambiente Virtual, do curso Tecnologia da Informação e Comunicação-FAETERJ. O projeto não tem ligação com o SUS, imagem utilizada apenas para ilustração e ambientação.</h6></i>
 </div>
 <a name="back-to-top">
 
