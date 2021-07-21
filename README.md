@@ -27,7 +27,6 @@
       - Consultar agenda do médico<br>
       </p>
   </details> 
-<br>  
 
 ## 🌐    Site
 - [SUS Agendamento](https://sus-agendamento.vercel.app/)
