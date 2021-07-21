@@ -31,7 +31,9 @@
       - Desmarcar consulta<br>
       - Consultar agenda do médico<br>
       </p>
-  </details> 
+  </details>
+
+- *Armazenamento dos dados feito com API Web Window.localStorage*
 
 ## 🌐    Site
 - [SUS Agendamento](https://sus-agendamento.vercel.app/)
@@ -42,6 +44,7 @@
 - [**JavaScript**](https://www.javascript.com/)    [(*Documentação MDN*)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 - [**Vercel**](https://vercel.com)    [(*Documentação*)](https://vercel.com/docs)
 - [**Visual Studio Code**](https://code.visualstudio.com/)    [*(Documentação)*](https://code.visualstudio.com/docs)
+- [**API Web Window.localStorage](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/localStorage)    [(*Documentação MDN*)](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/localStorage)
 
 <br> 
 
