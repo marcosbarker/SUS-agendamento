@@ -1,4 +1,8 @@
 body{
-background:  linear-gradient(rgba(255, 255, 255, .10), rgba(255, 255, 255, 0.3)100%), url("../assets/background-agend.jpg");
+background:  linear-gradient(rgba(255, 255, 255, .10), rgba(255, 255, 255, 0.3)100%);
 background-size: cover;
+}
+
+.container {
+  margin-right: 170px;
 }
